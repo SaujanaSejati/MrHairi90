@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10152b"><title>IlmuQuest — Pengembaraan Ilmu</title>
+<style>
+:root{--bg:#10152b;--panel:#1b2443;--gold:#ffd166;--mint:#71f0c0;--text:#f7f8ff;--muted:#b9c3e5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#273b69 0,#10152b 62%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+main{max-width:760px;margin:auto;padding:env(safe-area-inset-top) 16px calc(26px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 0 12px}.brand{font-weight:900;font-size:21px;letter-spacing:.3px}.brand span{color:var(--gold)}.pill{border:1px solid #ffffff26;background:#ffffff0d;border-radius:99px;padding:8px 11px;font-size:13px}
+.hero{border:1px solid #ffffff20;background:linear-gradient(135deg,#354d80,#1b2545 68%);border-radius:26px;padding:20px;overflow:hidden;position:relative}.hero small{color:var(--mint);font-weight:800;letter-spacing:1.5px}.hero h1{font-size:30px;line-height:1.05;margin:10px 0}.hero p{color:var(--muted);line-height:1.45;margin:8px 0 16px}.island{font-size:68px;text-align:center;filter:drop-shadow(0 8px 9px #0005);padding:6px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.stat{background:#ffffff0b;border:1px solid #ffffff14;border-radius:16px;padding:12px;text-align:center}.stat b{display:block;font-size:20px;color:var(--gold)}.stat span{font-size:12px;color:var(--muted)}
+h2{font-size:19px;margin:23px 0 12px}.subjects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.subject{background:var(--panel);border:1px solid #ffffff1c;color:var(--text);border-radius:18px;padding:15px;text-align:left;min-height:105px}.subject .emoji{font-size:28px;display:block;margin-bottom:8px}.subject strong{display:block;font-size:15px}.subject small{color:var(--muted)}button{font:inherit;cursor:pointer;touch-action:manipulation}.primary{width:100%;background:var(--gold);color:#24213b;font-weight:900;border:0;border-radius:15px;padding:15px;margin-top:12px}.secondary{background:#ffffff0d;border:1px solid #ffffff25;color:var(--text);border-radius:13px;padding:12px}
+#game{display:none}.topline{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;margin:10px 0}.bar{height:8px;border-radius:99px;background:#ffffff19;overflow:hidden}.bar div{height:100%;width:0;background:var(--mint);transition:width .25s}.qcard{margin-top:18px;background:#1b2443;border:1px solid #ffffff20;border-radius:23px;padding:19px}.qcard .tag{color:var(--mint);font-size:12px;font-weight:800;letter-spacing:1px}.qcard h2{font-size:23px;line-height:1.25;margin:12px 0 18px}.answers{display:grid;gap:10px}.answer{border:1px solid #ffffff25;background:#ffffff08;color:var(--text);padding:14px;border-radius:14px;text-align:left;line-height:1.35}.answer:disabled{opacity:.9}.answer.good{border-color:var(--mint);background:#71f0c020}.answer.bad{border-color:#ff8a8a;background:#ff8a8a20}.feedback{min-height:24px;color:var(--muted);margin-top:13px;font-size:14px;line-height:1.4}.end{text-align:center;padding:25px 10px}.end .big{font-size:64px}.footer{text-align:center;color:#8793bb;font-size:11px;padding:22px 0 6px}
+@media(min-width:600px){.hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center}.island{font-size:100px}.subjects{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body><main>
+<header><div class="brand">⚔️ Ilmu<span>Quest</span></div><div class="pill">⭐ <b id="xpTop">0</b> XP</div></header>
+<section id="home">
+<div class="hero"><div><small>SEASON 01 · MULA PENGEMBARAAN</small><h1>Ilmu ialah kuasa kau!</h1><p>Jawab soalan, kumpul XP dan buka laluan ke dunia baharu. Sedia untuk misi pertama?</p><button class="primary" onclick="startGame()">▶ Mula Misi</button></div><div class="island" aria-label="pulau pengembaraan">🏝️<div style="font-size:38px">🧭 🐉</div></div></div>
+<div class="stats"><div class="stat"><b id="xp">0</b><span>Jumlah XP</span></div><div class="stat"><b id="done">0</b><span>Misi selesai</span></div><div class="stat"><b id="streak">0</b><span>Jawapan betul</span></div></div>
+<h2>🗺️ Pilih alam ilmu</h2><div class="subjects">
+<button class="subject" onclick="chooseSubject('Sains')"><span class="emoji">🧪</span><strong>Sains</strong><small>Eksperimen minda</small></button>
+<button class="subject" onclick="chooseSubject('Matematik')"><span class="emoji">🔢</span><strong>Matematik</strong><small>Cabaran nombor</small></button>
+<button class="subject" onclick="chooseSubject('Bahasa Melayu')"><span class="emoji">📚</span><strong>Bahasa Melayu</strong><small>Kuasa bahasa</small></button>
+<button class="subject" onclick="chooseSubject('Geografi')"><span class="emoji">🌏</span><strong>Geografi</strong><small>Jelajah dunia</small></button>
+<button class="subject" onclick="chooseSubject('Sejarah')"><span class="emoji">🏛️</span><strong>Sejarah</strong><small>Jejak masa</small></button>
+<button class="subject" onclick="chooseSubject('Pengetahuan Am')"><span class="emoji">💡</span><strong>Pengetahuan Am</strong><small>Uji minda</small></button>
+</div><p style="color:var(--muted);font-size:13px;line-height:1.5">Prototaip awal: kemajuan disimpan pada peranti ini. Soalan contoh boleh ditambah lagi dalam pembangunan seterusnya.</p>
+</section>
+<section id="game"><div class="topline"><button class="secondary" onclick="goHome()">← Peta</button><span id="mission">MISI 1/5</span><span>⭐ <b id="xpGame">0</b></span></div><div class="bar"><div id="progress"></div></div><div id="questionArea" class="qcard"></div></section>
+<div class="footer">IlmuQuest · Belajar sambil mengembara</div>
+</main>
+<script>
+const bank={
+'Sains':[
+['Apakah gas yang diserap tumbuhan semasa fotosintesis?',['Oksigen','Karbon dioksida','Nitrogen','Hidrogen'],1,'Tumbuhan menggunakan karbon dioksida dan air untuk menghasilkan makanan dengan bantuan cahaya.'],
+['Planet manakah dikenali sebagai Planet Merah?',['Zuhal','Bumi','Marikh','Utarid'],2,'Permukaan Marikh kelihatan kemerahan kerana mineral besi teroksida.'],
+['Apakah organ yang mengepam darah ke seluruh badan?',['Paru-paru','Hati','Buah pinggang','Jantung'],3,'Jantung mengepam darah melalui sistem peredaran darah.'],
+['Air membeku pada suhu berapa Celsius dalam keadaan biasa?',['0°C','10°C','50°C','100°C'],0,'Air tulen membeku sekitar 0°C pada tekanan atmosfera biasa.'],
+['Sumber tenaga utama bagi Bumi ialah…',['Bulan','Matahari','Angin','Laut'],1,'Matahari membekalkan kebanyakan tenaga kepada sistem Bumi.']],
+'Matematik':[
+['Berapakah 12 × 8?',['86','92','96','108'],2,'12 darab 8 bersamaan 96.'],
+['Jika 3x = 21, berapakah nilai x?',['6','7','8','9'],1,'Bahagikan kedua-dua belah dengan 3: x = 7.'],
+['Berapakah 25% daripada 200?',['25','40','50','75'],2,'25% ialah satu perempat; satu perempat daripada 200 ialah 50.'],
+['Berapakah perimeter segi empat sama bersisi 5 cm?',['10 cm','15 cm','20 cm','25 cm'],2,'Perimeter = 4 × panjang sisi = 20 cm.'],
+['Apakah nombor perdana?',['9','15','17','21'],2,'17 hanya boleh dibahagi tepat dengan 1 dan 17.']],
+'Bahasa Melayu':[
+['Pilih perkataan seerti bagi “gembira”.',['Sedih','Riang','Marah','Bimbang'],1,'Riang membawa maksud hampir sama dengan gembira.'],
+['Apakah kata kerja dalam ayat “Aina membaca buku”?',['Aina','membaca','buku','ayat'],1,'“Membaca” ialah perbuatan yang dilakukan oleh Aina.'],
+['Apakah antonim bagi “tinggi”?',['Besar','Panjang','Rendah','Luas'],2,'Antonim ialah perkataan yang berlawanan maksud.'],
+['Pilih ejaan yang betul.',['Aktiviti','Aktivitiie','Aktipiti','Aktivty'],0,'Ejaan baku ialah “aktiviti”.'],
+['Peribahasa “bagai aur dengan tebing” bermaksud…',['Bergaduh selalu','Saling membantu','Berjalan pantas','Sangat jauh'],1,'Peribahasa ini menggambarkan hubungan saling membantu.']],
+'Geografi':[
+['Apakah ibu negara Malaysia?',['Johor Bahru','Kuala Lumpur','Kuching','Ipoh'],1,'Kuala Lumpur ialah ibu negara Malaysia.'],
+['Gunung tertinggi di Malaysia ialah…',['Gunung Tahan','Gunung Ledang','Gunung Kinabalu','Gunung Jerai'],2,'Gunung Kinabalu terletak di Sabah.'],
+['Arah matahari terbit ialah…',['Barat','Utara','Selatan','Timur'],3,'Matahari kelihatan terbit di sebelah timur.'],
+['Apakah lautan terbesar di dunia?',['Atlantik','Hindi','Pasifik','Artik'],2,'Lautan Pasifik ialah lautan terbesar.'],
+['Malaysia terletak di rantau…',['Eropah','Asia Tenggara','Asia Barat','Amerika Selatan'],1,'Malaysia ialah negara di Asia Tenggara.']],
+'Sejarah':[
+['Bilakah Persekutuan Tanah Melayu mencapai kemerdekaan?',['1955','1957','1963','1969'],1,'Kemerdekaan dicapai pada 31 Ogos 1957.'],
+['Malaysia dibentuk pada tahun…',['1948','1957','1963','1971'],2,'Malaysia dibentuk pada 16 September 1963.'],
+['Siapakah ketua negara Malaysia?',['Perdana Menteri','Yang di-Pertuan Agong','Menteri Besar','Yang Dipertua Dewan'],1,'Yang di-Pertuan Agong ialah Ketua Utama Negara.'],
+['Bunga kebangsaan Malaysia ialah…',['Melur','Orkid','Bunga raya','Mawar'],2,'Bunga raya ialah bunga kebangsaan Malaysia.'],
+['Bendera Malaysia dikenali sebagai…',['Jalur Gemilang','Sang Saka','Bendera Permai','Panji Negara'],0,'Nama rasmi bendera Malaysia ialah Jalur Gemilang.']],
+'Pengetahuan Am':[
+['Berapakah bilangan hari dalam tahun lompat?',['364','365','366','367'],2,'Tahun lompat mempunyai 366 hari.'],
+['Nombor kecemasan utama Malaysia ialah…',['991','995','999','1122'],2,'999 ialah nombor kecemasan utama Malaysia.'],
+['Berapa minit dalam satu jam?',['30','45','60','100'],2,'Satu jam mempunyai 60 minit.'],
+['Apakah alat untuk mengukur suhu?',['Barometer','Termometer','Kompas','Higrometer'],1,'Termometer digunakan untuk mengukur suhu.'],
+['Apakah bahasa kebangsaan Malaysia?',['Bahasa Inggeris','Bahasa Melayu','Bahasa Tamil','Bahasa Mandarin'],1,'Bahasa Melayu ialah bahasa kebangsaan Malaysia.']]
+};
+let subject='Sains',questions=[],idx=0,score=0,answered=false,xp=Number(localStorage.getItem('iqxp')||0),done=Number(localStorage.getItem('iqdone')||0),streak=Number(localStorage.getItem('iqstreak')||0);
+function updateStats(){document.getElementById('xp').textContent=xp;document.getElementById('xpTop').textContent=xp;document.getElementById('done').textContent=done;document.getElementById('streak').textContent=streak;document.getElementById('xpGame').textContent=xp;localStorage.setItem('iqxp',xp);localStorage.setItem('iqdone',done);localStorage.setItem('iqstreak',streak)}
+function chooseSubject(s){subject=s;startGame()}
+function startGame(){questions=[...bank[subject]].sort(()=>Math.random()-.5);idx=0;score=0;document.getElementById('home').style.display='none';document.getElementById('game').style.display='block';renderQuestion();window.scrollTo(0,0)}
+function renderQuestion(){answered=false;document.getElementById('mission').textContent='MISI '+(idx+1)+'/'+questions.length;document.getElementById('progress').style.width=(idx/questions.length*100)+'%';let q=questions[idx];document.getElementById('questionArea').innerHTML='<div class="tag">🧭 '+subject.toUpperCase()+' · CABARAN '+(idx+1)+'</div><h2>'+q[0]+'</h2><div class="answers">'+q[1].map((a,i)=>'<button class="answer" onclick="answer('+i+')" id="a'+i+'">'+String.fromCharCode(65+i)+'. '+a+'</button>').join('')+'</div><div class="feedback" id="feedback" aria-live="polite"></div><button class="primary" id="next" style="display:none" onclick="nextQuestion()">Seterusnya →</button>'}
+function answer(n){if(answered)return;answered=true;let q=questions[idx],ok=n===q[2];document.querySelectorAll('.answer').forEach((b,i)=>{b.disabled=true;if(i===q[2])b.classList.add('good');else if(i===n)b.classList.add('bad')});let fb=document.getElementById('feedback');if(ok){score++;xp+=10;streak++;fb.textContent='✅ Tepat! +10 XP. '+q[3]}else{streak=0;fb.textContent='💡 Belum tepat. Jawapan: '+q[1][q[2]]+'. '+q[3]}updateStats();document.getElementById('next').style.display='block';document.getElementById('progress').style.width=((idx+1)/questions.length*100)+'%'}
+function nextQuestion(){idx++;if(idx<questions.length){renderQuestion()}else{done++;updateStats();document.getElementById('questionArea').innerHTML='<div class="end"><div class="big">'+(score>=4?'🏆':'🧭')+'</div><div class="tag">MISI SELESAI</div><h2>'+score+' / '+questions.length+' jawapan betul</h2><p style="color:var(--muted)">Kau memperoleh '+(score*10)+' XP daripada misi '+subject+'. Teruskan pengembaraan untuk tambah ilmu!</p><button class="primary" onclick="startGame()">Main lagi</button><button class="secondary" style="width:100%;margin-top:10px" onclick="goHome()">Kembali ke peta</button></div>';document.getElementById('mission').textContent='SELESAI';document.getElementById('progress').style.width='100%'}}
+function goHome(){document.getElementById('game').style.display='none';document.getElementById('home').style.display='block';updateStats();window.scrollTo(0,0)}updateStats();
+</script></body></html>
