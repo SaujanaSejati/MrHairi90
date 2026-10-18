@@ -214,7 +214,7 @@ function fillTo100(){
   (v,n)=>{const a=125+v*7,b=48+v*3,z=a+b;return ['Berapakah '+a+' + '+b+'?',[String(z-10),String(z),String(z+10),String(z+20)].map(Number).sort((x,y)=>x-y).map(String),1,'Jumlahnya ialah '+z+'.'];},
   (v,n)=>{const a=500+v*13,b=120+v*4,z=a-b;return ['Hitung '+a+' − '+b+'.',[String(z+10),String(z),String(z-10),String(z+20)].map(Number).sort((x,y)=>x-y).map(String),[String(z+10),String(z),String(z-10),String(z+20)].map(Number).sort((x,y)=>x-y).indexOf(z),'Jawapan ialah '+z+'.'];},
   (v,n)=>{const a=6+(v%12),b=3+(v%8),z=a*b;const opts=[z+2,z,z-2,z+4].sort((x,y)=>x-y);return ['Berapakah '+a+' × '+b+'?',opts.map(String),opts.indexOf(z),'Hasil darab '+a+' dengan '+b+' ialah '+z+'.'];},
-  (v,n)=>{const a=120+v*5;return ['Tukarkan '+a+' cm kepada meter.',['../'.slice(1),String(a/100)+' m',String(a)+' m',String(a*10)+' m'],1,'100 cm bersamaan 1 m, jadi '+a+' cm = '+(a/100)+' m.'];},
+  (v,n)=>{const a=120+v*5;const opts=[(a/100)+' m',a+' m',(a*10)+' m',(a/1000)+' m'];return ['Tukarkan '+a+' cm kepada meter.',opts,0,'100 cm bersamaan 1 m, jadi '+a+' cm = '+(a/100)+' m.'];},
   (v,n)=>{const a=2+(v%8),b=5;const z=a/b;const opts=[(z+1).toFixed(1),(z).toFixed(1),(z+2).toFixed(1),(z+3).toFixed(1)];return ['Hitung '+a+'.0 ÷ '+b+'.',[opts[0],opts[1],opts[2],opts[3]],1,'Bahagikan '+a+' dengan '+b+' untuk mendapat '+z.toFixed(1)+'.'];},
   (v,n)=>{const a=10+v%30,b=4+(v%5),z=a*b;return ['Satu kotak mengandungi '+b+' pensel. Berapa pensel dalam '+a+' kotak?',[String(z-1),String(z),String(z+1),String(z+5)],1,'Jumlah pensel ialah '+a+' × '+b+' = '+z+'.'];},
   (v,n)=>{const a=20+v%70;return ['Berapakah '+a+'% daripada 100?',[String(100-a),String(a),String(a+10),String(a*2)],1,a+'% daripada 100 ialah '+a+'.'];}
