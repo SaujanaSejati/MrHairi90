@@ -34,7 +34,7 @@ h2{font-size:19px;margin:23px 0 12px}.subjects{display:grid;grid-template-column
 <section id="home">
 <div class="hero"><div><small>SEASON 01 · MULA PENGEMBARAAN</small><h1>Ilmu ialah kuasa kau!</h1><p>Jawab soalan, kumpul XP dan buka laluan ke dunia baharu. Sedia untuk misi pertama?</p><button class="primary" onclick="startGame()">▶ Mula Misi</button></div><div class="island" aria-label="pulau pengembaraan"><div style="font-size:22px;letter-spacing:3px;color:#ffd166;font-weight:900;text-shadow:0 2px 0 #5d431a">ALAM ILMU</div><div style="font-size:76px;line-height:1.15">🏝️</div><div style="font-size:38px;filter:drop-shadow(0 6px 5px #0006)">🧭 🐉</div><div style="font-size:12px;color:#b9c3e5;letter-spacing:2px">TEROKAI · BELAJAR · MENANG</div></div></div>
 <div class="stats"><div class="stat"><b id="xp">0</b><span>Jumlah XP</span></div><div class="stat"><b id="done">0</b><span>Misi selesai</span></div><div class="stat"><b id="streak">0</b><span>Jawapan betul</span></div></div>
-<h2>🗺️ Pilih alam ilmu</h2><div class="subjects">
+<h2>🗺️ Pilih alam ilmu</h2><div id="levelPicker" style="display:none;margin:0 0 16px;padding:15px;border:1px solid #ffffff24;border-radius:18px;background:#ffffff0a"><h2 style="margin:0 0 8px">🏅 Pilih peringkat</h2><p id="levelIntro" style="color:var(--muted);font-size:13px;margin:0 0 12px">Pilih tahap cabaran.</p><div id="levelButtons" class="subjects"></div></div><div class="subjects">
 <button class="subject" onclick="chooseSubject('Sains')"><span class="emoji">🧪</span><strong>Sains</strong><small>Eksperimen minda</small></button>
 <button class="subject" onclick="chooseSubject('Matematik')"><span class="emoji">🔢</span><strong>Matematik</strong><small>Cabaran nombor</small></button>
 <button class="subject" onclick="chooseSubject('Bahasa Melayu')"><span class="emoji">📚</span><strong>Bahasa Melayu</strong><small>Kuasa bahasa</small></button>
@@ -211,9 +211,33 @@ Object.keys(megaPack).forEach(s=>bank[s].push(...megaPack[s]));
 
 let subject='Sains',questions=[],idx=0,score=0,answered=false,xp=Number(localStorage.getItem('iqxp')||0),done=Number(localStorage.getItem('iqdone')||0),streak=Number(localStorage.getItem('iqstreak')||0);
 function updateStats(){document.getElementById('xp').textContent=xp;document.getElementById('xpTop').textContent=xp;document.getElementById('done').textContent=done;document.getElementById('streak').textContent=streak;document.getElementById('xpGame').textContent=xp;localStorage.setItem('iqxp',xp);localStorage.setItem('iqdone',done);localStorage.setItem('iqstreak',streak)}
-function chooseSubject(s){subject=s;startGame()}
-function startGame(){questions=[...bank[subject]].sort(()=>Math.random()-.5);idx=0;score=0;document.getElementById('home').style.display='none';document.getElementById('game').style.display='block';renderQuestion();window.scrollTo(0,0)}
-function renderQuestion(){answered=false;document.getElementById('mission').textContent='MISI '+(idx+1)+'/'+questions.length;document.getElementById('progress').style.width=(idx/questions.length*100)+'%';let q=questions[idx];document.getElementById('questionArea').innerHTML='<div class="tag">🧭 '+subject.toUpperCase()+' · CABARAN '+(idx+1)+'</div><h2>'+q[0]+'</h2><div class="answers">'+q[1].map((a,i)=>'<button class="answer" onclick="answer('+i+')" id="a'+i+'">'+String.fromCharCode(65+i)+'. '+a+'</button>').join('')+'</div><div class="feedback" id="feedback" aria-live="polite"></div><button class="primary" id="next" style="display:none" onclick="nextQuestion()">Seterusnya →</button>'}
+let selectedLevel=1;
+const levelNames=[['🌱','Pemula'],['🪵','Mahir'],['⚔️','Pakar'],['🔥','Legenda'],['👑','Master']];
+function chooseSubject(s){
+ subject=s;
+ const picker=document.getElementById('levelPicker');
+ picker.style.display='block';
+ document.getElementById('levelIntro').textContent='Alam '+s+' · Pilih peringkat untuk mula menjawab.';
+ const total=bank[s].length, perLevel=Math.ceil(total/5);
+ document.getElementById('levelButtons').innerHTML=levelNames.map((l,i)=>{
+  const start=i*perLevel, end=Math.min(start+perLevel,total);
+  const count=Math.max(0,end-start);
+  return '<button class="subject" style="min-height:80px" '+(count?'':'disabled')+' onclick="chooseLevel('+(i+1)+')"><span class="emoji">'+l[0]+'</span><strong>Peringkat '+(i+1)+': '+l[1]+'</strong><small>'+count+' soalan</small></button>';
+ }).join('');
+ picker.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function chooseLevel(level){selectedLevel=level;startGame()}
+function startGame(){
+ const perLevel=Math.ceil(bank[subject].length/5);
+ const from=(selectedLevel-1)*perLevel;
+ const to=selectedLevel===5?bank[subject].length:Math.min(from+perLevel,bank[subject].length);
+ questions=bank[subject].slice(from,to).sort(()=>Math.random()-.5);
+ idx=0;score=0;
+ document.getElementById('home').style.display='none';
+ document.getElementById('game').style.display='block';
+ renderQuestion();window.scrollTo(0,0)
+}
+function renderQuestion(){answered=false;document.getElementById('mission').textContent='PERINGKAT '+selectedLevel+' · '+(idx+1)+'/'+questions.length;document.getElementById('progress').style.width=(idx/questions.length*100)+'%';let q=questions[idx];document.getElementById('questionArea').innerHTML='<div class="tag">🧭 '+subject.toUpperCase()+' · PERINGKAT '+selectedLevel+' · CABARAN '+(idx+1)+'</div><h2>'+q[0]+'</h2><div class="answers">'+q[1].map((a,i)=>'<button class="answer" onclick="answer('+i+')" id="a'+i+'">'+String.fromCharCode(65+i)+'. '+a+'</button>').join('')+'</div><div class="feedback" id="feedback" aria-live="polite"></div><button class="primary" id="next" style="display:none" onclick="nextQuestion()">Seterusnya →</button>'}
 function answer(n){if(answered)return;answered=true;let q=questions[idx],ok=n===q[2];document.querySelectorAll('.answer').forEach((b,i)=>{b.disabled=true;if(i===q[2])b.classList.add('good');else if(i===n)b.classList.add('bad')});let fb=document.getElementById('feedback');if(ok){score++;xp+=10;streak++;fb.textContent='✅ Tepat! +10 XP. '+q[3]}else{streak=0;fb.textContent='💡 Belum tepat. Jawapan: '+q[1][q[2]]+'. '+q[3]}updateStats();document.getElementById('next').style.display='block';document.getElementById('progress').style.width=((idx+1)/questions.length*100)+'%'}
 function nextQuestion(){idx++;if(idx<questions.length){renderQuestion()}else{done++;updateStats();document.getElementById('questionArea').innerHTML='<div class="end"><div class="big">'+(score>=4?'🏆':'🧭')+'</div><div class="tag">MISI SELESAI</div><h2>'+score+' / '+questions.length+' jawapan betul</h2><p style="color:var(--muted)">Kau memperoleh '+(score*10)+' XP daripada misi '+subject+'. Teruskan pengembaraan untuk tambah ilmu!</p><button class="primary" onclick="startGame()">Main lagi</button><button class="secondary" style="width:100%;margin-top:10px" onclick="goHome()">Kembali ke peta</button></div>';document.getElementById('mission').textContent='SELESAI';document.getElementById('progress').style.width='100%'}}
 function goHome(){document.getElementById('game').style.display='none';document.getElementById('home').style.display='block';updateStats();window.scrollTo(0,0)}updateStats();
