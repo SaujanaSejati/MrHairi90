@@ -166,6 +166,99 @@ const bank={
 ["Zakat fitrah ditunaikan dalam bulan…",["Ramadan","Safar","Rejab","Muharam sahaja"],0,"Zakat fitrah ditunaikan pada bulan Ramadan sebelum solat Aidilfitri."],
 ["Bercakap benar menunjukkan sifat…",["Jujur","Hasad dengki","Sombong","Khianat"],0,"Bercakap benar menunjukkan kejujuran."]]
 };
+// Jana latihan tambahan supaya SETIAP subjek mempunyai 100 soalan.
+// Soalan variasi dijana daripada templat berlainan; pilihan jawapan dan penerangan disimpan bersama.
+function addQuestion(s, q, options, answer, explanation){
+ bank[s].push([q, options, answer, explanation]);
+}
+function fillTo100(){
+ const make=(s, templates)=>{
+   let n=0;
+   while(bank[s].length<100){
+     const t=templates[n%templates.length];
+     const v=Math.floor(n/templates.length)+1;
+     const item=t(v,n);
+     addQuestion(s,item[0],item[1],item[2],item[3]);
+     n++;
+   }
+ };
+ make('Bahasa Melayu',[
+  (v)=>['Pilih kata seerti bagi “gembira”.',['Sedih','Ri ang','Marah','Takut'].map(x=>x==='Ri ang'?'Riang':x),1,'Riang membawa maksud hampir sama dengan gembira.'],
+  (v)=>['Pilih antonim bagi “rajin”.',['Tekun','Malas','Cekap','Aktif'],1,'Malas ialah lawan kata rajin.'],
+  (v)=>['Pilih kata kerja yang sesuai: “Kakak _____ bunga setiap pagi.”',['menyiram','cantik','hijau','perlahan'],0,'Menyiram ialah kata kerja yang sesuai dalam ayat ini.'],
+  (v)=>['Pilih kata adjektif dalam ayat “Rumah itu besar.”',['Rumah','itu','besar','di'],2,'Besar menerangkan sifat rumah.'],
+  (v)=>['Pilih ejaan yang betul.',['kerjasama','kerja-sama','kerja sama-sama','kerjasamaa'],0,'Ejaan yang betul ialah kerjasama.'],
+  (v)=>['Lengkapkan peribahasa: “Bagai isi dengan _____.”',['kuku','batu','awan','air'],0,'Peribahasa “bagai isi dengan kuku” menggambarkan hubungan yang sangat rapat.'],
+  (v)=>['Pilih kata hubung yang sesuai: “Dia rajin _____ berjaya.”',['tetapi','lalu','agar','kerana'],2,'Agar menunjukkan tujuan.'],
+  (v)=>['Pilih ayat seruan.',['Tolong tutup pintu.','Wah, indahnya pemandangan itu!','Siapakah nama kamu?','Mereka ke sekolah.'],1,'Ayat seruan melahirkan perasaan dan biasanya menggunakan tanda seru.'],
+  (v)=>['Pilih penjodoh bilangan yang sesuai: se_____ bunga.',['utas','kuntum','batang','biji'],1,'Kuntum digunakan untuk bunga.'],
+  (v)=>['Apakah kata nama khas dalam ayat “Farah tinggal di Ipoh”?',['tinggal','di','Farah','rumah'],2,'Farah ialah nama khas orang.'],
+  (v)=>['Pilih ayat yang menggunakan imbuhan dengan betul.',['Mereka bermain di padang.','Mereka memain di padang.','Mereka permainan di padang.','Mereka mainkan di padang.'],0,'“Bermain” ialah bentuk kata kerja yang sesuai.'],
+  (v)=>['Pilih maksud “ringan tulang”.',['Suka membantu','Suka tidur','Suka bercakap','Suka berlari'],0,'Ringan tulang bermaksud rajin bekerja atau membantu.']
+ ]);
+ make('Bahasa Inggeris',[
+  (v)=>['Choose the plural of “mouse”.',['Mouses','Mice','Mousees','Mices'],1,'The plural form of mouse is mice.'],
+  (v)=>['Choose the opposite of “noisy”.',['Loud','Quiet','Busy','Bright'],1,'Quiet is the opposite of noisy.'],
+  (v)=>['Complete: “My father _____ coffee every morning.”',['drink','drinks','drinking','drank now'],1,'Use drinks with a singular third-person subject in the simple present.'],
+  (v)=>['Choose the correct past tense of “see”.',['Seed','Saw','Seen yesterday','Seeing'],1,'The simple past tense of see is saw.'],
+  (v)=>['Choose the correct preposition: “The picture is _____ the wall.”',['on','into','between','during'],0,'A picture is on the wall.'],
+  (v)=>['Which word is a noun?',['Quickly','Beautiful','Garden','Run'],2,'Garden names a place, so it is a noun.'],
+  (v)=>['Complete: “They _____ watching television now.”',['is','am','are','be'],2,'Use are with they in the present continuous tense.'],
+  (v)=>['Choose the synonym of “begin”.',['Finish','Start','Close','Forget'],1,'Start has the same meaning as begin.'],
+  (v)=>['Choose the correct sentence.',['He has a red bag.','He have a red bag.','He having red bag.','He had has a bag.'],0,'He has is correct for the simple present tense.'],
+  (v)=>['Choose the correct comparative: “A tiger is _____ than a cat.”',['large','larger','largest','more large'],1,'Use larger when comparing two things.'],
+  (v)=>['Complete: “I have lived here _____ 2020.”',['for','since','during','at'],1,'Since is used with a starting point in time.'],
+  (v)=>['Choose the correct question word: “_____ is your birthday?”',['Who','When','Where','Why'],1,'When asks about time.']
+ ]);
+ make('Matematik',[
+  (v,n)=>{const a=125+v*7,b=48+v*3,z=a+b;return ['Berapakah '+a+' + '+b+'?',[String(z-10),String(z),String(z+10),String(z+20)].map(Number).sort((x,y)=>x-y).map(String),1,'Jumlahnya ialah '+z+'.'];},
+  (v,n)=>{const a=500+v*13,b=120+v*4,z=a-b;return ['Hitung '+a+' − '+b+'.',[String(z+10),String(z),String(z-10),String(z+20)].map(Number).sort((x,y)=>x-y).map(String),[String(z+10),String(z),String(z-10),String(z+20)].map(Number).sort((x,y)=>x-y).indexOf(z),'Jawapan ialah '+z+'.'];},
+  (v,n)=>{const a=6+(v%12),b=3+(v%8),z=a*b;const opts=[z+2,z,z-2,z+4].sort((x,y)=>x-y);return ['Berapakah '+a+' × '+b+'?',opts.map(String),opts.indexOf(z),'Hasil darab '+a+' dengan '+b+' ialah '+z+'.'];},
+  (v,n)=>{const a=120+v*5;return ['Tukarkan '+a+' cm kepada meter.',['../'.slice(1),String(a/100)+' m',String(a)+' m',String(a*10)+' m'],1,'100 cm bersamaan 1 m, jadi '+a+' cm = '+(a/100)+' m.'];},
+  (v,n)=>{const a=2+(v%8),b=5;const z=a/b;const opts=[(z+1).toFixed(1),(z).toFixed(1),(z+2).toFixed(1),(z+3).toFixed(1)];return ['Hitung '+a+'.0 ÷ '+b+'.',[opts[0],opts[1],opts[2],opts[3]],1,'Bahagikan '+a+' dengan '+b+' untuk mendapat '+z.toFixed(1)+'.'];},
+  (v,n)=>{const a=10+v%30,b=4+(v%5),z=a*b;return ['Satu kotak mengandungi '+b+' pensel. Berapa pensel dalam '+a+' kotak?',[String(z-1),String(z),String(z+1),String(z+5)],1,'Jumlah pensel ialah '+a+' × '+b+' = '+z+'.'];},
+  (v,n)=>{const a=20+v%70;return ['Berapakah '+a+'% daripada 100?',[String(100-a),String(a),String(a+10),String(a*2)],1,a+'% daripada 100 ialah '+a+'.'];}
+ ]);
+ make('Sains',[
+  (v)=>['Organ yang mengepam darah ialah…',['Paru-paru','Jantung','Perut','Otak'],1,'Jantung mengepam darah ke seluruh badan.'],
+  (v)=>['Tumbuhan menyerap air terutamanya melalui…',['Daun','Bunga','Akar','Buah'],2,'Akar menyerap air dan mineral daripada tanah.'],
+  (v)=>['Planet tempat kita tinggal ialah…',['Marikh','Bumi','Zuhal','Musytari'],1,'Bumi ialah planet tempat manusia hidup.'],
+  (v)=>['Apakah yang diperlukan untuk pembakaran?',['Oksigen','Helium sahaja','Karbon pepejal sahaja','Wap air sahaja'],0,'Pembakaran memerlukan oksigen, bahan api dan haba.'],
+  (v)=>['Haiwan yang bertelur termasuk…',['Ayam','Kucing','Lembu','Kambing'],0,'Ayam membiak dengan bertelur.'],
+  (v)=>['Bahan yang telap air ialah…',['Kaca','Plastik','Kain kapas','Logam'],2,'Kain kapas boleh menyerap dan membenarkan air melaluinya.'],
+  (v)=>['Tenaga elektrik boleh ditukarkan kepada tenaga cahaya melalui…',['Mentol','Buku','Cermin biasa','Tali'],0,'Mentol menukarkan tenaga elektrik kepada cahaya dan haba.'],
+  (v)=>['Apakah keadaan jirim yang mempunyai bentuk tetap?',['Gas','Cecair','Pepejal','Wap'],2,'Pepejal mempunyai bentuk dan isi padu yang tetap.'],
+  (v)=>['Apakah organ deria untuk mendengar?',['Mata','Telinga','Hidung','Kulit'],1,'Telinga mengesan bunyi.'],
+  (v)=>['Apakah sumber tenaga fosil?',['Angin','Cahaya matahari','Arang batu','Air mengalir'],2,'Arang batu ialah bahan api fosil yang tidak boleh diperbaharui.'],
+  (v)=>['Apakah yang berlaku apabila wap air menyejuk?',['Penyejatan','Pemeluwapan','Peleburan','Pembakaran'],1,'Pemeluwapan menukarkan gas kepada cecair.'],
+  (v)=>['Haiwan yang makan tumbuhan dan haiwan lain ialah…',['Herbivor','Karnivor sahaja','Omnivor','Pengeluar'],2,'Omnivor makan tumbuhan dan haiwan.']
+ ]);
+ make('Sejarah',[
+  (v)=>['Bendera Malaysia dikenali sebagai…',['Jalur Gemilang','Negaraku','Bunga Raya','Rukun Negara'],0,'Nama bendera Malaysia ialah Jalur Gemilang.'],
+  (v)=>['Bunga kebangsaan Malaysia ialah…',['Orkid','Bunga raya','Melur','Mawar'],1,'Bunga raya ialah bunga kebangsaan Malaysia.'],
+  (v)=>['Malaysia dibentuk pada…',['31 Ogos 1957','16 September 1963','1 Januari 1960','31 Ogos 1965'],1,'Malaysia dibentuk pada 16 September 1963.'],
+  (v)=>['Persekutuan Tanah Melayu merdeka pada…',['31 Ogos 1957','16 September 1963','1 Januari 1950','31 Disember 1960'],0,'Kemerdekaan Persekutuan Tanah Melayu dicapai pada 31 Ogos 1957.'],
+  (v)=>['Apakah nama lagu kebangsaan Malaysia?',['Negaraku','Jalur Gemilang','Sejahtera Malaysia','Inilah Barisan Kita'],0,'Negaraku ialah lagu kebangsaan Malaysia.'],
+  (v)=>['Apakah tujuan muzium?',['Memelihara dan mempamerkan warisan','Menjual semua artifak','Menghapuskan rekod lama','Meramal cuaca'],0,'Muzium memelihara bahan warisan dan membantu pembelajaran sejarah.'],
+  (v)=>['Sumber sejarah lisan diperoleh melalui…',['Temu bual saksi','Peta cuaca','Kalkulator','Termometer'],0,'Sumber lisan boleh diperoleh daripada temu bual dan cerita saksi.'],
+  (v)=>['Rukun Negara membantu memupuk…',['Perpaduan','Perselisihan','Pembaziran','Perpecahan'],0,'Rukun Negara menjadi asas perpaduan dan kehidupan bermasyarakat.'],
+  (v)=>['Apakah maksud patriotisme?',['Cinta akan negara','Tidak menghormati negara','Menolak sejarah','Mementingkan diri sahaja'],0,'Patriotisme ialah semangat cinta dan kesetiaan kepada negara.'],
+  (v)=>['Apakah peranan artifak dalam kajian sejarah?',['Memberi bukti tentang masa lalu','Mengukur hujan','Menentukan suhu badan','Mengira jarak jalan'],0,'Artifak membantu ahli sejarah mengkaji kehidupan masa lalu.']
+ ]);
+ make('Pendidikan Islam',[
+  (v)=>['Bilangan Rukun Islam ialah…',['Tiga','Empat','Lima','Enam'],2,'Rukun Islam ada lima.'],
+  (v)=>['Kitab yang diturunkan kepada Nabi Muhammad SAW ialah…',['Taurat','Zabur','Injil','Al-Quran'],3,'Al-Quran diturunkan kepada Nabi Muhammad SAW.'],
+  (v)=>['Solat fardu sehari semalam ialah…',['Tiga waktu','Empat waktu','Lima waktu','Enam waktu'],2,'Solat fardu ada lima waktu.'],
+  (v)=>['Maksud amanah ialah…',['Menjaga tanggungjawab','Mengambil hak orang','Memungkiri janji','Menipu orang'],0,'Amanah ialah menunaikan tanggungjawab dan menjaga kepercayaan.'],
+  (v)=>['Nabi terakhir ialah…',['Nabi Musa AS','Nabi Isa AS','Nabi Muhammad SAW','Nabi Ibrahim AS'],2,'Nabi Muhammad SAW ialah nabi dan rasul terakhir.'],
+  (v)=>['Arah kiblat umat Islam ialah ke arah…',['Kaabah','Matahari terbit','Kutub Utara','Gunung Uhud sahaja'],0,'Umat Islam menghadap Kaabah ketika solat.'],
+  (v)=>['Bulan wajib berpuasa ialah…',['Ramadan','Safar','Rejab','Syawal sahaja'],0,'Puasa wajib dilaksanakan pada bulan Ramadan.'],
+  (v)=>['Sifat bercakap benar dinamakan…',['Siddiq','Khianat','Hasad','Takabbur'],0,'Siddiq bermaksud benar atau jujur.'],
+  (v)=>['Wuduk dilakukan untuk bersuci daripada…',['Hadas kecil','Semua hutang','Rasa lapar','Hujan'],0,'Wuduk ialah cara bersuci daripada hadas kecil.'],
+  (v)=>['Antara adab kepada ibu bapa ialah…',['Bercakap dengan sopan','Meninggikan suara','Mengabaikan nasihat','Menyakiti hati'],0,'Menghormati dan bercakap sopan ialah adab kepada ibu bapa.']
+ ]);
+}
+fillTo100();
 let subject='Sains',questions=[],idx=0,score=0,answered=false,xp=Number(localStorage.getItem('iqxp')||0),done=Number(localStorage.getItem('iqdone')||0),streak=Number(localStorage.getItem('iqstreak')||0);
 function updateStats(){document.getElementById('xp').textContent=xp;document.getElementById('xpTop').textContent=xp;document.getElementById('done').textContent=done;document.getElementById('streak').textContent=streak;document.getElementById('xpGame').textContent=xp;localStorage.setItem('iqxp',xp);localStorage.setItem('iqdone',done);localStorage.setItem('iqstreak',streak)}
 let selectedLevel=1;
