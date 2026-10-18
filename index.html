@@ -120,6 +120,77 @@ const extraQuestions={
 };
 Object.keys(extraQuestions).forEach(s=>bank[s].push(...extraQuestions[s]));
 
+const challengePack={
+'Sains':[
+['Apakah unit bagi arus elektrik?',['Volt','Ampere','Watt','Ohm'],1,'Arus elektrik diukur dalam ampere.'],
+['Apakah yang berlaku kepada bayang-bayang apabila objek didekatkan kepada sumber cahaya?',['Biasanya menjadi lebih besar','Terus hilang','Sentiasa sama','Bertukar warna'],0,'Apabila objek lebih dekat kepada sumber cahaya, bayangnya biasanya lebih besar.'],
+['Darah merah membawa oksigen dengan bantuan…',['Hemoglobin','Insulin','Kalsium','Air liur'],0,'Hemoglobin dalam sel darah merah mengikat oksigen.'],
+['Haiwan yang makan tumbuhan sahaja dipanggil…',['Karnivor','Herbivor','Omnivor','Pengurai'],1,'Herbivor ialah haiwan pemakan tumbuhan.'],
+['Apakah fungsi akar tumbuhan?',['Menyerap air dan mineral','Menghasilkan bunyi','Menarik serangga sahaja','Menghasilkan biji sahaja'],0,'Akar menyerap air dan mineral serta membantu memegang tumbuhan.'],
+['Apakah pusat sistem suria?',['Bumi','Bulan','Matahari','Marikh'],2,'Planet dalam sistem suria mengorbit Matahari.'],
+['Apakah nama daya yang menarik objek ke arah Bumi?',['Geseran','Graviti','Magnetisme','Apungan'],1,'Graviti menarik objek ke arah pusat Bumi.'],
+['Campuran pasir dan air boleh diasingkan dengan…',['Penurasan','Pembekuan sahaja','Magnet sahaja','Pembakaran'],0,'Penurasan memisahkan pepejal tidak larut daripada cecair.'],
+['Apakah organ yang menapis bahan buangan daripada darah?',['Buah pinggang','Perut','Kulit kepala','Pankreas sahaja'],0,'Buah pinggang menapis darah dan menghasilkan air kencing.'],
+['Bunyi tidak dapat merambat melalui…',['Air','Udara','Vakum','Logam'],2,'Bunyi memerlukan medium dan tidak merambat dalam vakum.']],
+'Matematik':[
+['Berapakah 7 kuasa dua?',['14','21','49','77'],2,'7 × 7 = 49.'],
+['Berapakah 2.5 + 1.75?',['3.25','4.25','4.75','5.25'],1,'2.50 + 1.75 = 4.25.'],
+['Sebuah barang berharga RM80 diberi diskaun 10%. Berapakah harga selepas diskaun?',['RM8','RM70','RM72','RM78'],2,'10% daripada RM80 ialah RM8; RM80 − RM8 = RM72.'],
+['Berapakah purata bagi 4, 6 dan 8?',['5','6','7','8'],1,'(4 + 6 + 8) ÷ 3 = 6.'],
+['Berapakah jumlah sudut dalam sebuah segi tiga?',['90°','180°','270°','360°'],1,'Jumlah sudut dalaman segi tiga ialah 180°.'],
+['Jika x + 9 = 17, nilai x ialah…',['6','7','8','9'],2,'17 − 9 = 8.'],
+['Berapakah 0.6 dalam bentuk pecahan paling ringkas?',['1/6','3/5','2/3','6/100'],1,'0.6 = 6/10 = 3/5.'],
+['Satu dozen bersamaan berapa unit?',['6','10','12','24'],2,'Satu dozen bersamaan 12 unit.'],
+['Berapakah isipadu kubus dengan sisi 3 cm?',['9 cm³','18 cm³','27 cm³','36 cm³'],2,'Isipadu kubus = sisi × sisi × sisi = 27 cm³.'],
+['Berapakah 1/2 daripada 3/4?',['1/4','3/8','2/6','3/2'],1,'1/2 × 3/4 = 3/8.']],
+'Bahasa Melayu':[
+['Pilih kata nama dalam ayat “Kucing itu tidur.”',['Kucing','itu','tidur','sangat'],0,'“Kucing” ialah kata nama yang merujuk haiwan.'],
+['Apakah penjodoh bilangan yang sesuai: se_____ pisang?',['utas','sikat','keping','batang'],1,'Penjodoh bilangan yang lazim ialah “sesikat pisang”.'],
+['Pilih ayat yang menggunakan tanda baca dengan betul.',['Ali berkata “Saya datang”.','Ali berkata, “Saya datang.”','Ali berkata “Saya datang”.','Ali berkata; “Saya datang”?'],1,'Koma dan tanda petik digunakan untuk memperkenalkan petikan langsung.'],
+['Apakah maksud “buah tangan”?',['Hadiah yang dibawa','Buah yang jatuh','Kerja tangan','Luka pada tangan'],0,'“Buah tangan” bermaksud hadiah atau cenderamata.'],
+['Kata sendi nama yang sesuai: Buku itu diletakkan _____ atas meja.',['di','ke','daripada','kepada'],0,'“Di atas meja” menunjukkan tempat.'],
+['Apakah imbuhan apitan dalam perkataan “permainan”?',['per-…-an','meN- sahaja','ber- sahaja','-kan sahaja'],0,'Kata “permainan” menggunakan apitan per-…-an.'],
+['Pilih kata hubung: “Saya belajar _____ mendapat keputusan baik.”',['tetapi','supaya','kerana itu','walaupun'],1,'“Supaya” menghubungkan tujuan.'],
+['Apakah maksud peribahasa “ukur baju di badan sendiri”?',['Bersikap mengikut kemampuan','Suka membeli baju','Menjahit dengan cepat','Mengikut orang lain'],0,'Peribahasa ini menasihatkan kita menilai kemampuan sendiri.'],
+['Pilih kata ganda penuh.',['Lelaki','Sayur-mayur','Gunung-ganang','Buku-buku'],3,'“Buku-buku” ialah kata ganda penuh.'],
+['Ayat manakah ayat perintah?',['Siapakah nama kamu?','Cuaca cerah hari ini.','Sila beratur dengan tertib.','Wah, hebatnya!'],2,'Ayat perintah memberikan arahan atau permintaan.']],
+'Geografi':[
+['Apakah nama lapisan udara yang menyelubungi Bumi?',['Atmosfera','Hidrosfera','Litosfera','Biosfera sahaja'],0,'Atmosfera ialah lapisan gas yang menyelubungi Bumi.'],
+['Apakah maksud cuaca?',['Keadaan atmosfera pada masa singkat','Purata cuaca selama puluhan tahun','Bentuk muka bumi','Jenis batuan'],0,'Cuaca merujuk keadaan atmosfera dalam tempoh singkat.'],
+['Apakah proses sungai membawa bahan seperti pasir dan kelodak?',['Pengangkutan','Pemeluwapan','Fotosintesis','Penyejukan'],0,'Sungai mengangkut bahan hakisan ke kawasan lain.'],
+['Apakah sumber tenaga yang digunakan oleh turbin angin?',['Angin','Arang batu sahaja','Gelombang bunyi','Tanah liat'],0,'Turbin angin menukar tenaga angin kepada tenaga elektrik.'],
+['Apakah kesan penebangan hutan secara berlebihan?',['Risiko hakisan meningkat','Habitat bertambah luas','Banjir pasti hilang','Udara tiada perubahan'],0,'Kehilangan litupan tumbuhan boleh meningkatkan hakisan tanah.'],
+['Apakah alat untuk menentukan arah mata angin?',['Kompas','Termometer','Jam randik','Pembaris'],0,'Kompas membantu menunjukkan arah.'],
+['Apakah maksud urbanisasi?',['Pertambahan penduduk dan pembangunan bandar','Pergerakan awan','Pembentukan gunung','Pengurangan air laut'],0,'Urbanisasi ialah proses pertumbuhan kawasan bandar.'],
+['Negeri manakah terletak di Pulau Borneo?',['Perlis','Sabah','Melaka','Negeri Sembilan'],1,'Sabah terletak di Pulau Borneo.'],
+['Apakah garis longitud 0 darjah dikenali sebagai?',['Garisan Khatulistiwa','Garisan Greenwich','Garisan Artik','Garisan Sartan'],1,'Garisan Greenwich ialah longitud 0 darjah.'],
+['Apakah amalan yang mengurangkan sisa ke tapak pelupusan?',['Kitar semula','Membuang semua ke sungai','Membakar plastik terbuka','Menggunakan barang sekali sahaja'],0,'Kitar semula mengurangkan jumlah sisa yang dibuang.']],
+'Sejarah':[
+['Apakah nama sistem tulisan purba Mesir?',['Hieroglif','Rumi','Jawi moden','Braille'],0,'Hieroglif ialah sistem tulisan yang digunakan di Mesir purba.'],
+['Apakah fungsi utama sumber primer sejarah?',['Memberi bukti langsung daripada zaman dikaji','Menggantikan semua kajian','Menyediakan ramalan cuaca','Menentukan harga barang'],0,'Sumber primer berasal daripada tempoh atau peristiwa yang dikaji.'],
+['Apakah maksud tamadun secara umum?',['Masyarakat maju dengan organisasi dan budaya','Kawasan tanpa penduduk','Perjalanan jauh sahaja','Kumpulan haiwan liar'],0,'Tamadun merangkumi perkembangan sosial, politik, ekonomi dan budaya.'],
+['Apakah nama kerajaan maritim terkenal yang berpusat di Sumatera dan mempunyai pengaruh di rantau ini?',['Srivijaya','Rom','Maya','Athens'],0,'Srivijaya ialah kerajaan maritim penting di Asia Tenggara.'],
+['Mengapakah sumber sejarah perlu dibandingkan?',['Untuk menilai ketepatan maklumat','Untuk memadam semua perbezaan','Untuk mengelakkan penyelidikan','Untuk menukar tarikh sesuka hati'],0,'Perbandingan sumber membantu menilai kesahihan bukti.'],
+['Apakah tujuan utama penubuhan ASEAN?',['Kerjasama serantau','Membentuk satu bahasa dunia','Menghapuskan semua sempadan','Menggantikan kerajaan negara'],0,'ASEAN menggalakkan kerjasama dan kestabilan serantau.'],
+['Apakah maksud arkib?',['Tempat atau koleksi rekod yang dipelihara','Tempat menjual makanan','Alat mengukur suhu','Kawasan pertanian sahaja'],0,'Arkib menyimpan rekod bernilai untuk rujukan.'],
+['Apakah peranan pengisytiharan kemerdekaan?',['Mengumumkan status negara merdeka','Menentukan musim hujan','Membina jalan raya sahaja','Memilih nama sekolah'],0,'Pengisytiharan mengumumkan kemerdekaan secara rasmi.'],
+['Mengapakah warisan budaya perlu dipelihara?',['Supaya identiti dan sejarah diwarisi','Supaya semua tradisi hilang','Supaya artifak rosak','Supaya sejarah tidak dipelajari'],0,'Pemeliharaan warisan membantu generasi akan datang memahami identiti mereka.'],
+['Apakah sumber sejarah berbentuk artifak?',['Syiling lama','Ramalan cuaca esok','Komen tanpa bukti','Cerita rekaan baharu'],0,'Syiling lama ialah artifak fizikal yang boleh dikaji.']],
+'Pengetahuan Am':[
+['Apakah langkah pertama yang sesuai jika seseorang tidak sedarkan diri dan tidak bernafas normal?',['Panggil bantuan kecemasan dan mulakan CPR jika terlatih','Beri minuman','Biarkan seorang diri','Suruh berdiri'],0,'Hubungi bantuan kecemasan, minta AED dan mulakan CPR mengikut latihan.'],
+['Apakah maksud kata laluan yang kuat?',['Panjang, unik dan sukar diteka','Nama sendiri sahaja','123456','Kata laluan sama untuk semua akaun'],0,'Gunakan kata laluan panjang dan unik; pengurus kata laluan boleh membantu.'],
+['Apakah yang perlu dibuat sebelum melintas jalan?',['Berhenti, lihat dan dengar keadaan trafik','Terus berlari','Lihat telefon','Ikut tanpa memeriksa'],0,'Berhenti di tempat selamat dan pastikan jalan benar-benar selamat.'],
+['Apakah fungsi utama bank pusat?',['Mengurus dasar monetari dan kestabilan kewangan','Mengeluarkan lesen memandu','Mengurus sekolah','Meramal keputusan sukan'],0,'Bank pusat mengurus dasar monetari dan menyokong kestabilan kewangan.'],
+['Apakah tindakan bijak apabila menerima pautan mencurigakan?',['Jangan klik dan semak melalui saluran rasmi','Masukkan kata laluan','Terus hantar kepada rakan','Muat turun semua fail'],0,'Pautan mencurigakan boleh menjadi cubaan penipuan atau phishing.'],
+['Apakah simbol kimia bagi air?',['CO₂','O₂','H₂O','NaCl'],2,'Formula kimia air ialah H₂O.'],
+['Berapakah bilangan negeri di Malaysia?',['11','12','13','14'],2,'Malaysia mempunyai 13 negeri dan 3 Wilayah Persekutuan.'],
+['Apakah yang dimaksudkan dengan bajet?',['Rancangan pendapatan dan perbelanjaan','Senarai nama rakan','Ramalan cuaca','Jadual perjalanan sahaja'],0,'Bajet membantu merancang wang masuk dan wang keluar.'],
+['Apakah cara paling sesuai mengurangkan penggunaan plastik sekali guna?',['Bawa botol dan beg guna semula','Ambil beg baharu setiap kali','Buang plastik ke sungai','Gunakan lebih banyak pembungkus'],0,'Barang guna semula boleh mengurangkan sisa plastik.'],
+['Apakah maksud kecerdasan buatan (AI)?',['Teknologi yang menjalankan tugas yang memerlukan kebolehan seperti kecerdasan manusia','Mesin yang hanya mencetak kertas','Satu jenis bateri','Nama sistem cuaca'],0,'AI membolehkan sistem melakukan tugas seperti memahami bahasa atau mengenal corak.']]
+};
+Object.keys(challengePack).forEach(s=>bank[s].push(...challengePack[s]));
+
+
 let subject='Sains',questions=[],idx=0,score=0,answered=false,xp=Number(localStorage.getItem('iqxp')||0),done=Number(localStorage.getItem('iqdone')||0),streak=Number(localStorage.getItem('iqstreak')||0);
 function updateStats(){document.getElementById('xp').textContent=xp;document.getElementById('xpTop').textContent=xp;document.getElementById('done').textContent=done;document.getElementById('streak').textContent=streak;document.getElementById('xpGame').textContent=xp;localStorage.setItem('iqxp',xp);localStorage.setItem('iqdone',done);localStorage.setItem('iqstreak',streak)}
 function chooseSubject(s){subject=s;startGame()}
