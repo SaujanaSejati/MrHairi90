@@ -79,6 +79,47 @@ const bonus={
 'Pengetahuan Am':[['Berapa bulan dalam setahun?',['10','11','12','13'],2,'Setahun mempunyai 12 bulan.']]
 };
 Object.keys(bonus).forEach(s=>bank[s].push(...bonus[s]));
+
+const extraQuestions={
+'Sains':[
+['Apakah fungsi paru-paru?',['Mengepam darah','Pertukaran gas','Mencerna makanan','Menapis air kencing'],1,'Paru-paru mengambil oksigen dan menyingkirkan karbon dioksida.'],
+['Antara berikut, yang manakah sumber tenaga boleh baharu?',['Arang batu','Petroleum','Tenaga suria','Gas asli'],2,'Tenaga suria diperoleh daripada cahaya Matahari dan boleh diperbaharui.'],
+['Apakah yang diperlukan tumbuhan untuk fotosintesis?',['Cahaya, air dan karbon dioksida','Batu dan pasir','Oksigen sahaja','Garam sahaja'],0,'Fotosintesis menggunakan cahaya, air dan karbon dioksida.'],
+['Bahan manakah biasanya ditarik oleh magnet?',['Kayu','Plastik','Besi','Kaca'],2,'Besi ialah bahan yang boleh ditarik oleh magnet.'],
+['Apakah nama perubahan gas menjadi cecair?',['Penyejatan','Pemeluwapan','Peleburan','Pemejalwapan'],1,'Pemeluwapan ialah perubahan gas menjadi cecair.']],
+'Matematik':[
+['Berapakah 15% daripada 100?',['5','10','15','25'],2,'15% daripada 100 ialah 15.'],
+['Berapakah 3/4 dalam bentuk perpuluhan?',['0.25','0.5','0.75','1.25'],2,'3 dibahagi 4 bersamaan 0.75.'],
+['Sebuah bas bergerak 60 km dalam sejam. Berapa jauh dalam 2 jam pada kelajuan sama?',['30 km','60 km','100 km','120 km'],3,'Jarak = kelajuan × masa = 60 × 2 = 120 km.'],
+['Berapakah luas segi empat tepat berukuran 8 cm × 3 cm?',['11 cm²','16 cm²','24 cm²','48 cm²'],2,'Luas = panjang × lebar = 8 × 3 = 24 cm².'],
+['Apakah nombor seterusnya: 5, 10, 15, 20, …?',['22','24','25','30'],2,'Corak bertambah 5 setiap kali, jadi nombor seterusnya 25.']],
+'Bahasa Melayu':[
+['Pilih kata adjektif dalam ayat “Cuaca hari ini panas.”',['Cuaca','hari','ini','panas'],3,'“Panas” menerangkan keadaan cuaca, jadi ialah kata adjektif.'],
+['Apakah maksud simpulan bahasa “ringan tulang”?',['Suka membantu dan rajin','Mudah cedera','Tidak kuat','Suka tidur'],0,'“Ringan tulang” bermaksud rajin membantu atau bekerja.'],
+['Pilih kata ganti nama diri pertama.',['Dia','Mereka','Saya','Kamu'],2,'“Saya” ialah kata ganti nama diri pertama.'],
+['Ayat manakah merupakan ayat tanya?',['Saya ke sekolah.','Tolong tutup pintu.','Wah, cantiknya!','Bilakah bas tiba?'],3,'Ayat tanya digunakan untuk meminta maklumat dan lazimnya berakhir dengan tanda soal.'],
+['Apakah imbuhan awalan bagi perkataan “berjalan”?',['ber-','-an','ke-','-kan'],0,'Awalan “ber-” ditambah pada kata dasar jalan.']],
+'Geografi':[
+['Apakah punca utama kejadian siang dan malam?',['Bumi berputar pada paksinya','Bulan mengelilingi Bumi','Matahari mengelilingi Bumi','Awan bergerak'],0,'Putaran Bumi pada paksinya menyebabkan siang dan malam.'],
+['Apakah yang ditunjukkan oleh peta topografi?',['Ketinggian dan bentuk muka bumi','Jumlah penduduk sahaja','Bahasa penduduk','Harga barang'],0,'Peta topografi menunjukkan bentuk muka bumi dan ketinggian.'],
+['Kawasan berhampiran garisan Khatulistiwa biasanya mempunyai iklim…',['Kutub','Tropika','Gurun sejuk','Mediterranean sejuk'],1,'Kawasan Khatulistiwa lazimnya panas dan menerima hujan yang banyak.'],
+['Apakah proses batuan dipecahkan oleh cuaca dan persekitaran?',['Hakisan sahaja','Luluhawa','Pemendapan','Penyejatan'],1,'Luluhawa memecahkan batuan di tempat asalnya.'],
+['Apakah arah yang bertentangan dengan utara?',['Timur','Barat','Selatan','Barat laut'],2,'Arah yang bertentangan dengan utara ialah selatan.']],
+'Sejarah':[
+['Apakah nama pertubuhan serantau yang dianggotai Malaysia dan negara Asia Tenggara?',['NATO','ASEAN','OPEC','EU'],1,'Malaysia ialah anggota ASEAN, pertubuhan negara-negara Asia Tenggara.'],
+['Apakah tujuan utama muzium sejarah?',['Menyimpan dan mempamerkan warisan','Menjual makanan','Melatih atlet sahaja','Mengawal trafik'],0,'Muzium memelihara artifak dan berkongsi pengetahuan sejarah.'],
+['Siapakah ketua kerajaan Persekutuan Malaysia?',['Yang di-Pertuan Agong','Perdana Menteri','Ketua Hakim Negara','Yang Dipertua Negeri'],1,'Perdana Menteri mengetuai kerajaan Persekutuan.'],
+['Apakah maksud kemerdekaan sesebuah negara?',['Negara ditadbir kuasa asing','Negara bebas mentadbir sendiri','Negara tiada undang-undang','Negara tiada rakyat'],1,'Kemerdekaan bermaksud bebas daripada pemerintahan kuasa asing.'],
+['Dokumen yang menjadi undang-undang tertinggi Malaysia ialah…',['Rukun Tetangga','Perlembagaan Persekutuan','Jalur Gemilang','Warta sekolah'],1,'Perlembagaan Persekutuan ialah undang-undang tertinggi negara.']],
+'Pengetahuan Am':[
+['Apakah tindakan sesuai jika terlihat kebakaran kecil yang berbahaya?',['Sembunyi dan diam','Maklumkan orang dewasa dan hubungi bantuan kecemasan','Sentuh api','Gunakan lif ketika kebakaran bangunan'],1,'Utamakan keselamatan, beri amaran dan hubungi pihak kecemasan.'],
+['Apakah planet tempat manusia tinggal?',['Marikh','Zuhrah','Bumi','Musytari'],2,'Bumi ialah planet yang menjadi tempat tinggal manusia.'],
+['Apakah yang perlu dilakukan sebelum berkongsi berita dalam talian?',['Terus sebarkan','Semak sumber dan kesahihan','Ubah tajuk','Percaya semua mesej'],1,'Semak sumber yang dipercayai sebelum menyebarkan maklumat.'],
+['Apakah alat yang digunakan untuk mengukur jisim di makmal?',['Neraca','Termometer','Kompas','Jam'],0,'Neraca digunakan untuk mengukur jisim.'],
+['Apakah amalan yang membantu menjimatkan air?',['Biarkan paip terbuka','Baiki paip bocor','Basuh kaki lima setiap jam','Mandi terlalu lama'],1,'Membaiki kebocoran mengelakkan pembaziran air.']]
+};
+Object.keys(extraQuestions).forEach(s=>bank[s].push(...extraQuestions[s]));
+
 let subject='Sains',questions=[],idx=0,score=0,answered=false,xp=Number(localStorage.getItem('iqxp')||0),done=Number(localStorage.getItem('iqdone')||0),streak=Number(localStorage.getItem('iqstreak')||0);
 function updateStats(){document.getElementById('xp').textContent=xp;document.getElementById('xpTop').textContent=xp;document.getElementById('done').textContent=done;document.getElementById('streak').textContent=streak;document.getElementById('xpGame').textContent=xp;localStorage.setItem('iqxp',xp);localStorage.setItem('iqdone',done);localStorage.setItem('iqstreak',streak)}
 function chooseSubject(s){subject=s;startGame()}
