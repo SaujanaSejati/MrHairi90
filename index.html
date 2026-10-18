@@ -70,6 +70,15 @@ const bank={
 ['Apakah alat untuk mengukur suhu?',['Barometer','Termometer','Kompas','Higrometer'],1,'Termometer digunakan untuk mengukur suhu.'],
 ['Apakah bahasa kebangsaan Malaysia?',['Bahasa Inggeris','Bahasa Melayu','Bahasa Tamil','Bahasa Mandarin'],1,'Bahasa Melayu ialah bahasa kebangsaan Malaysia.']]
 };
+const bonus={
+'Sains':[['Apakah unit asas hidupan?',['Atom','Sel','Tisu','Organ'],1,'Sel ialah unit asas hidupan.']],
+'Matematik':[['Berapakah 144 dibahagi 12?',['10','11','12','14'],2,'144 ÷ 12 = 12.']],
+'Bahasa Melayu':[['Apakah antonim bagi “rajin”?',['Tekun','Malas','Cekap','Bijak'],1,'Malas berlawanan maksud dengan rajin.']],
+'Geografi':[['Apakah garisan latitud 0 darjah?',['Khatulistiwa','Greenwich','Kutub Utara','Tropika'],0,'Garisan latitud 0° ialah Khatulistiwa.']],
+'Sejarah':[['Hari Malaysia disambut pada tarikh…',['31 Ogos','16 September','1 Januari','1 Mei'],1,'Hari Malaysia disambut pada 16 September.']],
+'Pengetahuan Am':[['Berapa bulan dalam setahun?',['10','11','12','13'],2,'Setahun mempunyai 12 bulan.']]
+};
+Object.keys(bonus).forEach(s=>bank[s].push(...bonus[s]));
 let subject='Sains',questions=[],idx=0,score=0,answered=false,xp=Number(localStorage.getItem('iqxp')||0),done=Number(localStorage.getItem('iqdone')||0),streak=Number(localStorage.getItem('iqstreak')||0);
 function updateStats(){document.getElementById('xp').textContent=xp;document.getElementById('xpTop').textContent=xp;document.getElementById('done').textContent=done;document.getElementById('streak').textContent=streak;document.getElementById('xpGame').textContent=xp;localStorage.setItem('iqxp',xp);localStorage.setItem('iqdone',done);localStorage.setItem('iqstreak',streak)}
 function chooseSubject(s){subject=s;startGame()}
